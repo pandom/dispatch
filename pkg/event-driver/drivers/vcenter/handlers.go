@@ -73,6 +73,19 @@ func handleVMDeployedEvent(e *types.VmDeployedEvent) interface{} {
 	}
 }
 
+func handleVMBeingRemovedEvent(e *types.VmRemovedEvent) interface{} {
+	defer trace.Trace("")()
+	return struct {
+		VMName      string `json:"vm_name"`
+		VMID        string `json:"vm_id"`
+		SrcTemplate string `json:"src_template"`
+	}{
+		VMname:      e.Vm.Name,
+		VMID:        e.Vm.Vm.String(),
+		SrcTemplate: e.SrcTemplate.Name,
+	}
+}
+
 func handleVMEvent(e *types.VmEvent) interface{} {
 	defer trace.Trace("")()
 	return struct {
