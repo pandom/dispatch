@@ -24,6 +24,8 @@ func processEventMetadata(e types.BaseEvent) interface{} {
 		return handleVMBeingDeployedEvent(concreteEvent)
 	case *types.VmDeployedEvent:
 		return handleVMDeployedEvent(concreteEvent)
+	case *types.VMBeingRemovedEvent:
+		return handleVMBeingRemovedEvent(concreteEvent)
 	case *types.VmEvent:
 		return handleVMEvent(concreteEvent)
 	default:
